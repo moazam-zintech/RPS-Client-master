@@ -1,0 +1,31 @@
+<div class="container " *ngIf="!receiveddata">
+  <h1 class="text-center font-bold">Organization Form</h1>
+  <form [formGroup]="organizationForm" (ngSubmit)="onSubmit()" >
+    <div class="flex">
+        <mat-form-field appearance="fill" class="form-field w-80">
+            <mat-label>Organization Name</mat-label>
+            <input matInput formControlName="organizationName" required placeholder="Enter Organization Name" />
+            <mat-error *ngIf="organizationForm.get('organizationName').hasError('required')">
+              Organization name is required.
+            </mat-error>
+            <mat-error *ngIf="organizationForm.get('organizationName').hasError('minlength')">
+              Organization name must be at least 2 characters long.
+            </mat-error>
+          </mat-form-field>
+      
+          <mat-checkbox formControlName="isActive" class="checkbox">
+            Active Status
+          </mat-checkbox>
+    </div>
+    
+
+    <div class="button-container text-center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="organizationForm.invalid">
+        {{data ? 'Edit' : 'Save'}}
+      </button>
+    </div>
+  </form>
+</div>
+<div class="container" *ngIf="receiveddata">
+  <div mat-dialog-title class="text-center">Delete Employee</div>
+</div>
